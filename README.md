@@ -1,1 +1,1 @@
-# Neural_Collaborative_Recommender_System
+# Neural Collaborative Recommender System
