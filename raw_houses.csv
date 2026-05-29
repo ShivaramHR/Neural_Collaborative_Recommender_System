@@ -1,0 +1,201 @@
+house_id,region,property_type,price,cv,bedrooms,school_rating,outside_space
+1000,Central Auckland,Townhouse,974445,919159,1,8,Deck Only
+1001,South Auckland,House,507338,509190,1,7,Large Backyard
+1002,West Auckland,House,664884,677819,1,10,Large Backyard
+1003,North Shore,Apartment,1230473,1236633,4,10,None
+1004,Central Auckland,Townhouse,672606,640352,1,2,Deck Only
+1005,Central Auckland,House,1882058,1887797,5,6,Large Backyard
+1006,Central Auckland,House,1206589,1204462,3,6,Large Backyard
+1007,South Auckland,Townhouse,708702,779052,3,3,Small Courtyard
+1008,West Auckland,House,508446,548860,1,2,Large Backyard
+1009,West Auckland,House,758824,753266,4,1,Large Backyard
+1010,Central Auckland,Townhouse,1800183,1844444,4,6,Deck Only
+1011,South Auckland,Townhouse,812562,852844,5,5,Small Courtyard
+1012,South Auckland,Townhouse,593126,537949,1,9,Small Courtyard
+1013,Central Auckland,House,1283856,1385260,3,1,Large Backyard
+1014,Central Auckland,Townhouse,1480275,1586892,4,7,Small Courtyard
+1015,Central Auckland,House,909071,901331,1,5,Large Backyard
+1016,Central Auckland,House,1472090,1440048,4,5,Large Backyard
+1017,North Shore,Townhouse,1202579,1147972,4,2,Small Courtyard
+1018,North Shore,Townhouse,1053493,1048578,3,3,Deck Only
+1019,Central Auckland,Apartment,1221857,1110515,2,7,Balcony
+1020,West Auckland,Townhouse,1060153,1134828,5,6,Small Courtyard
+1021,Central Auckland,Townhouse,1599449,1450835,5,2,Small Courtyard
+1022,Central Auckland,House,1381074,1333855,3,6,Large Backyard
+1023,Central Auckland,House,1326613,1441123,4,2,Small Courtyard
+1024,North Shore,House,587675,615320,1,2,Large Backyard
+1025,West Auckland,House,914135,874167,4,2,Large Backyard
+1026,Central Auckland,Apartment,1128624,1072790,3,3,Balcony
+1027,North Shore,House,1318187,1187708,5,2,Large Backyard
+1028,North Shore,Apartment,1226334,1274336,4,4,Balcony
+1029,Central Auckland,Townhouse,2084747,1896612,5,9,Small Courtyard
+1030,West Auckland,Townhouse,585128,588943,1,6,Small Courtyard
+1031,Central Auckland,Townhouse,1489167,1626802,5,1,Deck Only
+1032,Central Auckland,Townhouse,1896569,1748435,5,8,Small Courtyard
+1033,South Auckland,House,546142,589230,2,7,Large Backyard
+1034,South Auckland,House,655279,719689,2,10,Large Backyard
+1035,South Auckland,Townhouse,556841,508007,2,3,Deck Only
+1036,Central Auckland,House,1653539,1780169,5,1,Large Backyard
+1037,Central Auckland,House,1293673,1297833,3,5,Large Backyard
+1038,West Auckland,Townhouse,883539,955373,5,4,Small Courtyard
+1039,North Shore,House,1223583,1241035,3,10,Large Backyard
+1040,Central Auckland,Apartment,1486899,1535107,3,8,Balcony
+1041,North Shore,Apartment,853291,860762,2,1,Balcony
+1042,Central Auckland,Apartment,1605022,1722025,4,10,None
+1043,South Auckland,House,355823,372469,1,1,Large Backyard
+1044,Central Auckland,House,1195463,1200546,2,4,Large Backyard
+1045,West Auckland,Apartment,633771,680436,2,8,None
+1046,Central Auckland,House,1663677,1578924,4,5,Large Backyard
+1047,North Shore,Apartment,528398,492185,1,2,Balcony
+1048,North Shore,Apartment,1565316,1458999,5,6,Balcony
+1049,Central Auckland,Apartment,1867102,1805117,5,5,None
+1050,South Auckland,House,500411,474258,2,2,Large Backyard
+1051,West Auckland,House,412585,448074,1,3,Small Courtyard
+1052,South Auckland,Apartment,727407,670063,2,9,None
+1053,South Auckland,House,656263,682381,3,7,Large Backyard
+1054,North Shore,House,836680,784675,2,7,Large Backyard
+1055,South Auckland,Townhouse,660748,711181,2,6,Deck Only
+1056,Central Auckland,Apartment,1792523,1957906,5,8,None
+1057,Central Auckland,Townhouse,1804579,1792116,5,4,Deck Only
+1058,Central Auckland,Townhouse,2039222,2193824,5,8,Deck Only
+1059,Central Auckland,House,1403547,1264636,3,4,Large Backyard
+1060,Central Auckland,Townhouse,1680132,1787642,5,8,Small Courtyard
+1061,Central Auckland,Apartment,1137890,1076131,1,9,Balcony
+1062,South Auckland,House,771973,835074,4,3,Large Backyard
+1063,Central Auckland,Townhouse,898178,808561,1,3,Deck Only
+1064,Central Auckland,Apartment,653489,660831,1,2,Balcony
+1065,North Shore,Townhouse,1442169,1516191,5,10,Small Courtyard
+1066,Central Auckland,Townhouse,1333287,1268939,4,3,Small Courtyard
+1067,South Auckland,Townhouse,735884,690720,4,3,Deck Only
+1068,Central Auckland,House,1454044,1333096,4,5,Large Backyard
+1069,South Auckland,House,639662,617457,3,5,Large Backyard
+1070,West Auckland,Apartment,1131235,1144774,5,2,Balcony
+1071,Central Auckland,Apartment,1778050,1641440,4,10,Balcony
+1072,Central Auckland,Apartment,1382392,1348300,3,6,Balcony
+1073,South Auckland,Apartment,545129,491605,2,5,None
+1074,West Auckland,Townhouse,654206,695902,2,6,Deck Only
+1075,West Auckland,Townhouse,760229,703736,3,1,Deck Only
+1076,West Auckland,Townhouse,779994,746195,3,5,Deck Only
+1077,Central Auckland,Townhouse,1866909,1687098,5,9,Small Courtyard
+1078,Central Auckland,Townhouse,2027842,2000361,5,10,Small Courtyard
+1079,Central Auckland,Townhouse,1051447,1122970,2,2,Deck Only
+1080,South Auckland,Apartment,747649,731522,4,1,Balcony
+1081,West Auckland,House,764314,715321,2,10,Large Backyard
+1082,Central Auckland,House,1506329,1582759,4,9,Large Backyard
+1083,Central Auckland,House,1525393,1613501,4,10,Large Backyard
+1084,Central Auckland,Townhouse,1805616,1687800,5,9,Small Courtyard
+1085,Central Auckland,House,1034180,1090202,1,9,Large Backyard
+1086,West Auckland,House,617586,672834,1,6,Large Backyard
+1087,West Auckland,Townhouse,949133,885802,3,8,Small Courtyard
+1088,South Auckland,House,873344,920676,5,1,Large Backyard
+1089,North Shore,Townhouse,1254190,1306507,4,10,Deck Only
+1090,Central Auckland,House,859838,855293,1,4,Large Backyard
+1091,West Auckland,House,849843,774703,4,1,Large Backyard
+1092,West Auckland,Apartment,594954,544346,1,8,Balcony
+1093,North Shore,House,622208,666063,1,1,Large Backyard
+1094,West Auckland,House,487128,534880,1,3,Large Backyard
+1095,North Shore,Townhouse,1571536,1626870,5,4,Small Courtyard
+1096,North Shore,Townhouse,856631,847372,2,8,Small Courtyard
+1097,North Shore,House,1193468,1228692,4,6,Large Backyard
+1098,Central Auckland,Townhouse,2054985,2093781,5,10,Deck Only
+1099,Central Auckland,House,2056464,2008594,5,7,Large Backyard
+1100,Central Auckland,House,2114573,1930869,5,8,Small Courtyard
+1101,West Auckland,Townhouse,1050572,1118126,5,2,Small Courtyard
+1102,Central Auckland,Townhouse,2049958,1997410,5,10,Small Courtyard
+1103,North Shore,Townhouse,1251186,1330958,3,8,Deck Only
+1104,South Auckland,Townhouse,671009,637795,4,3,Deck Only
+1105,Central Auckland,Apartment,1775524,1598337,5,7,Balcony
+1106,North Shore,Townhouse,1121828,1045305,4,3,Small Courtyard
+1107,West Auckland,House,762447,757649,3,7,Large Backyard
+1108,Central Auckland,Townhouse,1318056,1435179,3,2,Small Courtyard
+1109,Central Auckland,House,1782493,1640675,4,10,Small Courtyard
+1110,Central Auckland,House,904083,968130,1,6,Large Backyard
+1111,Central Auckland,House,1021314,1026834,2,3,Small Courtyard
+1112,South Auckland,House,450452,479814,1,3,Large Backyard
+1113,South Auckland,Apartment,524213,503074,1,9,Balcony
+1114,West Auckland,Apartment,586977,626885,1,7,None
+1115,South Auckland,Townhouse,836301,881933,5,5,Deck Only
+1116,South Auckland,House,845893,800223,3,10,Large Backyard
+1117,Central Auckland,House,1041936,965110,1,7,Large Backyard
+1118,South Auckland,House,853722,916565,3,9,Large Backyard
+1119,North Shore,House,965869,1055354,4,1,Large Backyard
+1120,South Auckland,Townhouse,619528,561453,2,7,Deck Only
+1121,South Auckland,Townhouse,740857,775124,4,6,Small Courtyard
+1122,Central Auckland,Townhouse,1624075,1757094,4,10,Deck Only
+1123,Central Auckland,House,2072992,2221152,5,9,Large Backyard
+1124,Central Auckland,Apartment,987932,1079714,2,1,None
+1125,North Shore,Townhouse,1226385,1290180,4,4,Deck Only
+1126,South Auckland,Townhouse,874183,864094,4,9,Small Courtyard
+1127,South Auckland,Townhouse,546902,526333,2,4,Small Courtyard
+1128,Central Auckland,House,1469763,1417069,2,10,Large Backyard
+1129,North Shore,House,1026208,1072268,4,3,Small Courtyard
+1130,North Shore,House,861770,904140,2,9,Large Backyard
+1131,Central Auckland,Townhouse,1416792,1331886,4,2,Small Courtyard
+1132,Central Auckland,House,1621018,1740364,4,4,Large Backyard
+1133,Central Auckland,House,2069860,2158832,5,6,Large Backyard
+1134,South Auckland,House,454490,460193,1,2,Large Backyard
+1135,Central Auckland,House,1663851,1654377,4,8,Small Courtyard
+1136,North Shore,Apartment,1153626,1163600,3,8,None
+1137,West Auckland,Townhouse,471301,439181,1,1,Deck Only
+1138,Central Auckland,House,906983,853235,1,3,Large Backyard
+1139,South Auckland,House,580719,533235,1,10,Small Courtyard
+1140,South Auckland,House,972381,905025,5,9,Large Backyard
+1141,Central Auckland,House,1517239,1503187,4,5,Large Backyard
+1142,North Shore,House,1482459,1491458,5,6,Large Backyard
+1143,Central Auckland,House,1326625,1198701,4,4,Large Backyard
+1144,Central Auckland,House,1680986,1780768,5,10,Small Courtyard
+1145,Central Auckland,Townhouse,1423835,1365220,5,2,Small Courtyard
+1146,West Auckland,Townhouse,807444,873950,3,8,Deck Only
+1147,North Shore,House,1639626,1792934,5,6,Large Backyard
+1148,Central Auckland,House,1164999,1091710,2,5,Large Backyard
+1149,Central Auckland,Townhouse,1298249,1288407,3,9,Small Courtyard
+1150,South Auckland,Townhouse,926665,834226,5,1,Small Courtyard
+1151,Central Auckland,Apartment,941919,960442,1,5,Balcony
+1152,Central Auckland,Townhouse,1186933,1212406,2,6,Small Courtyard
+1153,North Shore,House,975277,926033,2,5,Large Backyard
+1154,South Auckland,House,634771,642186,2,6,Large Backyard
+1155,Central Auckland,Townhouse,1437734,1358813,3,6,Deck Only
+1156,West Auckland,House,1131693,1054924,5,7,Small Courtyard
+1157,West Auckland,Townhouse,1052327,1084216,5,4,Small Courtyard
+1158,Central Auckland,Apartment,932530,900064,1,8,Balcony
+1159,West Auckland,Townhouse,601485,612343,1,7,Deck Only
+1160,Central Auckland,House,1109269,1094459,2,9,Small Courtyard
+1161,West Auckland,Townhouse,612338,671655,1,7,Deck Only
+1162,West Auckland,House,643350,598261,3,3,Large Backyard
+1163,North Shore,Townhouse,1359086,1349463,5,3,Deck Only
+1164,Central Auckland,Apartment,1270781,1316645,2,8,Balcony
+1165,South Auckland,House,468373,458588,1,5,Large Backyard
+1166,Central Auckland,Apartment,1441225,1578054,3,4,Balcony
+1167,Central Auckland,Apartment,1418455,1481402,3,8,Balcony
+1168,Central Auckland,House,931816,961072,1,6,Large Backyard
+1169,North Shore,House,1335206,1403851,5,2,Large Backyard
+1170,West Auckland,House,530321,578330,1,4,Large Backyard
+1171,Central Auckland,House,1040640,1125518,2,4,Large Backyard
+1172,North Shore,House,702181,733678,1,6,Large Backyard
+1173,Central Auckland,Townhouse,1569236,1647434,3,6,Deck Only
+1174,West Auckland,House,387161,359743,1,1,Small Courtyard
+1175,Central Auckland,House,2146576,1976048,5,8,Large Backyard
+1176,West Auckland,Apartment,805939,817367,4,6,None
+1177,Central Auckland,House,699497,632116,1,3,Small Courtyard
+1178,South Auckland,Apartment,1013813,1010235,5,9,None
+1179,Central Auckland,House,1557478,1467253,5,2,Large Backyard
+1180,Central Auckland,House,1267124,1228100,3,8,Large Backyard
+1181,Central Auckland,Townhouse,1989349,2099083,5,10,Deck Only
+1182,South Auckland,Townhouse,765903,833492,5,3,Small Courtyard
+1183,South Auckland,Apartment,882754,807263,5,5,Balcony
+1184,Central Auckland,Townhouse,1941950,1955249,5,6,Small Courtyard
+1185,West Auckland,Apartment,713882,768498,2,10,Balcony
+1186,South Auckland,House,518118,474856,2,6,Large Backyard
+1187,North Shore,House,986838,1050886,3,4,Small Courtyard
+1188,North Shore,Townhouse,716262,695891,1,3,Deck Only
+1189,Central Auckland,Apartment,1621610,1563911,5,4,Balcony
+1190,Central Auckland,Apartment,826472,905394,1,1,Balcony
+1191,South Auckland,House,453305,426184,1,4,Large Backyard
+1192,South Auckland,House,710988,738459,3,1,Large Backyard
+1193,West Auckland,Townhouse,841237,895318,5,1,Small Courtyard
+1194,Central Auckland,House,2176263,1976561,5,10,Large Backyard
+1195,Central Auckland,Apartment,1754311,1814092,4,6,None
+1196,West Auckland,Apartment,447163,487546,1,5,None
+1197,South Auckland,House,378848,350375,1,4,Large Backyard
+1198,South Auckland,Townhouse,592845,639824,2,3,Small Courtyard
+1199,West Auckland,Townhouse,864912,881306,4,1,Small Courtyard
