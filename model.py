@@ -126,16 +126,12 @@ def repeat_activation_forward(X, params):
     L = len(params)//2
     A = X
 
-    for l in range(1, L):
+    for l in range(1, L+1):
         A_prev = A
         A, cache = activation_forward(A_prev, params['w' + str(l)], params['b' + str(l)], 'relu')
         caches.append(cache)
 
-
-    AL, cache = activation_forward(A, params['w' + str(L)], params['b' + str(L)], 'sigmoid')
-    caches.append(cache)
-
-    return AL, caches
+    return A, caches
         
         
 def compute_cost(AL, Y):
