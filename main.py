@@ -43,8 +43,27 @@ def train(X_user, X_house, Y, learning_rate, epochs):
         cost = nn.compute_cost(AL, Y)
 
         #Backward Pass
+        #directly used the result derived.
+        dZ = AL - Y
 
+        # calculate dA1 and dA2 using chain rule
+        dA1 = dZ * A2
+        dA2 = dZ * A1
 
+        # use the repeat_activation_backward function written in model.py
+        user_grads = nn.repeat_activation_backward(dA1, caches1)
+        house_grads = nn.repeat_activation_backward(dA2, caches2)
+
+        #update parameters
+        user_params = nn.update_parameters(user_params, user_grads, learning_rate)
+        house_params = nn.update_parameters(house_params, house_grads, learning_rate)
+
+        # Print status updates
+        if epoch == 1 or epoch % 100 == 0:
+            # Quick metric calculation: Round probabilities to get predictions
+            predictions = (AL > 0.5).astype(int)
+            accuracy = np.mean(predictions == Y) * 100
+            print(f"Epoch {epoch:4d}/{epochs} | Cost: {cost:.6f} | Training Accuracy: {accuracy:.2f}%")
 
     return 
 
