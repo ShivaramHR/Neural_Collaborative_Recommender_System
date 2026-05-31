@@ -85,7 +85,7 @@ def initialize_parameters(layer_dims):
     L = len(layer_dims)
 
     for l in range(1, L): # start from 1 cause we have number of features in the 0th pos.
-        params['w' + str(l)] = np.random.randn(layer_dims[l], layer_dims[l-1])*0.01 #(k1, nx) for 1st iteration
+        params['w' + str(l)] = np.random.randn(layer_dims[l], layer_dims[l-1])*0.1 #(k1, nx) for 1st iteration
         params['b' + str(l)] = np.zeros((layer_dims[l], 1)) # (k1 , 1) for 1st iteration
 
         # to be safe and not mismatch the shapes
@@ -148,12 +148,19 @@ def repeat_activation_forward(X, params):
 def compute_cost(AL, Y):
     """
     Y => (ny, m)
+    AL => (ny, m)
     """
-
     m = Y.shape[1]
 
-    cost = -(1/m) * (np.sum(Y*np.log(AL) + (1-Y)*np.log(1-AL)))
+    # 🚨 CRITICAL FIX: Clip AL values to be between epsilon and 1 - epsilon
+    # This keeps AL away from absolute 0 and 1, stopping np.log(0) from hitting infinity
+    epsilon = 1e-15
+    AL = np.clip(AL, epsilon, 1 - epsilon)
 
+    # Standard Cross-Entropy Cost Formula
+    cost = -(1/m) * (np.sum(Y * np.log(AL) + (1 - Y) * np.log(1 - AL)))
+
+    # Ensure the cost output is a scalar dimension
     cost = np.squeeze(cost)
 
     return cost

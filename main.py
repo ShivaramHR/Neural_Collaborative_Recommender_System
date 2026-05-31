@@ -61,7 +61,7 @@ def train(X_user, X_house, Y, learning_rate, epochs):
         # Print status updates
         if epoch == 1 or epoch % 100 == 0:
             # Quick metric calculation: Round probabilities to get predictions
-            predictions = (AL > 0.5).astype(int)
+            predictions = (AL > 0.35).astype(int)
             accuracy = np.mean(predictions == Y) * 100
             print(f"Epoch {epoch:4d}/{epochs} | Cost: {cost:.6f} | Training Accuracy: {accuracy:.2f}%")
 
@@ -72,6 +72,6 @@ if __name__ == "__main__":
     X_user, X_house, Y = load_and_prepare_data()
 
     #train the model
-    trained_user_model, trained_house_model = train(X_user, X_house, Y, 0.001, 1000)
+    trained_user_model, trained_house_model = train(X_user, X_house, Y, 0.1, 15000)
 
     print("Model optimized successfully!")
