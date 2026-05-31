@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import model as nn
+import pickle
 
 def load_and_prepare_data():
 
@@ -72,6 +73,12 @@ if __name__ == "__main__":
     X_user, X_house, Y = load_and_prepare_data()
 
     #train the model
-    trained_user_model, trained_house_model = train(X_user, X_house, Y, 0.1, 15000)
+    trained_user_model, trained_house_model = train(X_user, X_house, Y, 0.1, 20000)
 
-    print("Model optimized successfully!")
+    #To save the trained parameters to disk for later use in inference or further training without needing to retrain from scratch.
+    print("💾 Saving trained parameters to disk...")
+    with open('trained_user_params.pkl', 'wb') as f:
+        pickle.dump(trained_user_model, f)
+    with open('trained_house_params.pkl', 'wb') as f:
+        pickle.dump(trained_house_model, f)
+    print("✅ Parameters saved successfully!")

@@ -13,11 +13,29 @@ The project is structured modularly to isolate data engineering from the core al
 ```text
 Neural_Collaborative_Recommender_System/
 ├── generate.py        # Data pipeline: Synthetic generation, scaling, & tensor alignment
-├── model.py           # Coming soon
-├── main.py            # Coming soon
+├── model.py           # Core brain: Matrix initialization, activations, forward & backprop
+├── main.py            # Execution wrapper: Training orchestration and validation
 ├── .gitignore         # Prevents tracking cache artifacts
 └── README.md          # Project documentation
 ```
+
+---
+
+## Project Components
+
+- **[View Data Generation Notebook (Alternative Link)](https://nbviewer.org/github/ShivaramHR/Neural_Collaborative_Recommender_System/blob/main/generate.ipynb)** - Step-by-step synthetic user and house feature matrix creation pipeline.
+* **`main.py`** - Core training script utilizing the optimized model configuration.
+  > **Metrics:** `Training Accuracy: 95.48%` | `Blind Test Accuracy: 88.88%`
+- `model.py` - Custom Multi-Layer Neural Collaborative Filtering Two-Tower architecture built from scratch.
+
+---
+
+## Results
+
+| Metric | Value |
+|--------|-------|
+| Training Accuracy | ~96% |
+| Dataset | Synthetically generated Auckland housing interactions |
 
 ---
 
