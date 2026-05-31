@@ -120,18 +120,17 @@ def activation_forward(A_prev, w, b, act):
     cache = (linear_cache, activation_cache)
     return A, cache
         
-# TODO: needs changing
-# def repeat_activation_forward(X, params):
-#     caches = []
-#     L = len(params)//2
-#     A = X
+def repeat_activation_forward(X, params):
+    caches = []
+    L = len(params)//2
+    A = X
 
-#     for l in range(1, L+1):
-#         A_prev = A
-#         A, cache = activation_forward(A_prev, params['w' + str(l)], params['b' + str(l)], 'relu')
-#         caches.append(cache)
+    for l in range(1, L+1):
+        A_prev = A
+        A, cache = activation_forward(A_prev, params['w' + str(l)], params['b' + str(l)], 'relu')
+        caches.append(cache)
 
-#     return A, caches
+    return A, caches
         
         
 def compute_cost(AL, Y):
@@ -173,29 +172,18 @@ def activation_backward(dA, cache, activation):
 
 
 # TODO: needs changing
-# def repeat_activation_backward(AL, Y, caches): # caches from repeat_activation_backward.
-#     grads = {}
-#     L = len(caches)
-#     m = AL.shape[1]
-#     Y = Y.reshape(AL.shape)
+def repeat_activation_backward(dAL, caches): # caches from repeat_activation_backward.
+    grads = {}
+    L = len(caches)
+    grads['dAL'] = dAL
+    current_cache = caches[L]
+    for l in reversed(range(L)):
+        dA_prev_temp, dw_temp, db_temp = activation_backward(dAL, current_cache, 'relu')
+        grads["dA" + str(l)] = dA_prev_temp
+        grads["dw" + str(l+1)] = dw_temp
+        grads["db" + str(l+1)] = db_temp
 
-#     #dAL
-#     dAL = -(np.divide(Y, AL)) + (np.divide((1-Y), (1 - AL)))
-
-#     current_cache = caches[L-1]
-#     dA_prev_temp, dw_temp, db_temp = activation_backward(dA, current_cache, 'sigmoid')
-#     grads["dA" + str(L-1)] = dA_prev_temp
-#     grads["dw" + str(L)] = dw_temp
-#     grads["db" + str(L)] = db_temp
-
-#     for l in reversed(range(L-1)):
-#         current_cache = caches[l]
-#         dA_prev_temp, dw_temp, db_temp = activation_backward(grads['dA' + str(l+1)], current_cache, 'relu')
-#         grads["dA" + str(l)] = dA_prev_temp
-#         grads["dw" + str(l+1)] = dw_temp
-#         grads["db" + str(l+1)] = db_temp
-
-#     return grads
+    return grads
 
 def update_parameters(params, grads, learning_rate):
     parameters = copy.deepcopy(params)
