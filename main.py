@@ -37,7 +37,7 @@ def train(X_user, X_house, Y, learning_rate, epochs):
 
         # calculate the dot product of A1 and A2
         Z = np.sum(A1*A2, axis=0, keepdims=True)
-        AL, cache = nn.sigmoid(Z)
+        AL, _ = nn.sigmoid(Z)
 
         #Evaluate the cost
         cost = nn.compute_cost(AL, Y)
