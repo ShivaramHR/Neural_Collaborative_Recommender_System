@@ -119,16 +119,28 @@ def activation_forward(A_prev, w, b, act):
 
     cache = (linear_cache, activation_cache)
     return A, cache
-        
+
+
 def repeat_activation_forward(X, params):
     caches = []
-    L = len(params)//2
+    L = len(params) // 2  # Total number of layers (6)
     A = X
 
-    for l in range(1, L+1):
+    # 1. Hidden Layers 1 through L-1: Safe ReLU tracking
+    for l in range(1, L):
         A_prev = A
         A, cache = activation_forward(A_prev, params['w' + str(l)], params['b' + str(l)], 'relu')
         caches.append(cache)
+
+    # 2. Final Output Embedding Layer L: Direct linear project (No ReLU)
+    A_prev = A
+    Z, linear_cache = forward(A_prev, params['w' + str(L)], params['b' + str(L)])
+
+    # CRITICAL FIX: Save a dummy string for the activation cache
+    # to prevent relu_backward from accidentally reading Z later!
+    cache = (linear_cache, "LINEAR_LAYER_NO_RELU")
+    A = Z
+    caches.append(cache)
 
     return A, caches
         
@@ -170,14 +182,43 @@ def activation_backward(dA, cache, activation):
 
     return dA_prev, dw, db
 
-
-def repeat_activation_backward(dAL, caches): # caches from repeat_activation_backward.
+def repeat_activation_backward(dAL, caches):
     grads = {}
     L = len(caches)
-    grads['dAL'] = dAL
     dA_current = dAL
 
-    for l in reversed(range(L)):
+    # 1. Final Output Layer (Layer L): Direct linear backpropagation
+    current_cache = caches[L - 1]
+    linear_cache, activation_check = current_cache
+
+    # Directly pass back through the linear layer equations
+    dZ = dA_current
+    dA_prev_temp, dw_temp, db_temp = backward(dZ, linear_cache)
+
+    grads["dA" + str(L - 1)] = dA_prev_temp
+    grads["dw" + str(L)] = dw_temp
+    grads["db" + str(L)] = db_temp
+
+    # Update current gradient to flow down to hidden layers
+    dA_current = dA_prev_temp
+
+    # 2. Hidden Layers (L-1 down to 1): Safe ReLU backpropagation
+    for l in reversed(range(L - 1)):
+        current_cache = caches[l]
+
+        # Pull the tracking metrics cleanly
+        dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu')
+
+        grads["dA" + str(l)] = dA_prev_temp
+        grads["dw" + str(l + 1)] = dw_temp
+        grads["db" + str(l + 1)] = db_temp
+
+        dA_current = dA_prev_temp
+
+    return grads
+
+
+    for l in reversed(range(L-1)):
         current_cache = caches[l]
         dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu')
         grads["dA" + str(l)] = dA_prev_temp
