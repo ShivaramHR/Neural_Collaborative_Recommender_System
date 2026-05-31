@@ -22,8 +22,8 @@ def load_and_prepare_data():
 
 def train(X_user, X_house, Y, learning_rate, epochs):
     # assign the structure of the neural network 6 layers of relu and 1 layer of sigmoid at the end.
-    user_layer_dims = [X_user.shape[0], 128, 64, 64, 32, 32, 32]
-    house_layer_dims = [X_house.shape[0], 128, 64, 64, 32, 32, 32]
+    user_layer_dims = [X_user.shape[0], 128, 128, 64, 64, 32, 1]
+    house_layer_dims = [X_house.shape[0], 128, 64, 64, 32, 1]
 
     #initialize parameters
     user_params = nn.initialize_parameters(user_layer_dims)
