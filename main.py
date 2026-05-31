@@ -34,5 +34,17 @@ def train(X_user, X_house, Y, learning_rate, epochs):
         #forward pass
         A1, caches1 = nn.repeat_activation_forward(X_user, user_params)
         A2, caches2 = nn.repeat_activation_forward(X_house, house_params)
+
+        # calculate the dot product of A1 and A2
+        Z = np.sum(A1*A2, axis=0, keepdims=True)
+        AL, cache = nn.sigmoid(Z)
+
+        #Evaluate the cost
+        cost = nn.compute_cost(AL, Y)
+
+        #Backward Pass
+
+
+
     return 
 

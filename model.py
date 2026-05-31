@@ -171,7 +171,6 @@ def activation_backward(dA, cache, activation):
     return dA_prev, dw, db
 
 
-# TODO: needs changing
 def repeat_activation_backward(dAL, caches): # caches from repeat_activation_backward.
     grads = {}
     L = len(caches)
