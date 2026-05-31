@@ -175,9 +175,11 @@ def repeat_activation_backward(dAL, caches): # caches from repeat_activation_bac
     grads = {}
     L = len(caches)
     grads['dAL'] = dAL
-    current_cache = caches[L]
+    dA_current = dAL
+
     for l in reversed(range(L)):
-        dA_prev_temp, dw_temp, db_temp = activation_backward(dAL, current_cache, 'relu')
+        current_cache = caches[l]
+        dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu')
         grads["dA" + str(l)] = dA_prev_temp
         grads["dw" + str(l+1)] = dw_temp
         grads["db" + str(l+1)] = db_temp
