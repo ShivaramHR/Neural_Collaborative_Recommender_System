@@ -21,7 +21,7 @@ def load_and_prepare_data():
 # X_user, X_house, Y = load_and_prepare_data()
 
 
-def train(X_user, X_house, Y, learning_rate, epochs, lambd):
+def train(X_user, X_house, Y, learning_rate, epochs, lambd, keep_prob):
     # assign the structure of the neural network 6 layers of relu and 1 layer of sigmoid at the end.
     user_layer_dims = [X_user.shape[0], 128, 64, 64, 32, 32, 32]
     house_layer_dims = [X_house.shape[0], 128, 64, 64, 32, 32, 32]
@@ -33,8 +33,8 @@ def train(X_user, X_house, Y, learning_rate, epochs, lambd):
     # number of iterations for training
     for epoch in range(1, epochs + 1):
         #forward pass
-        A1, caches1 = nn.repeat_activation_forward(X_user, user_params)
-        A2, caches2 = nn.repeat_activation_forward(X_house, house_params)
+        A1, caches1 = nn.repeat_activation_forward(X_user, user_params, keep_prob)
+        A2, caches2 = nn.repeat_activation_forward(X_house, house_params, keep_prob)
 
         # calculate the dot product of A1 and A2
         Z = np.sum(A1*A2, axis=0, keepdims=True)
@@ -52,8 +52,8 @@ def train(X_user, X_house, Y, learning_rate, epochs, lambd):
         dA2 = dZ * A1
 
         # use the repeat_activation_backward function written in model.py
-        user_grads = nn.repeat_activation_backward(dA1, caches1, lambd)
-        house_grads = nn.repeat_activation_backward(dA2, caches2, lambd)
+        user_grads = nn.repeat_activation_backward(dA1, caches1, lambd, keep_prob)
+        house_grads = nn.repeat_activation_backward(dA2, caches2, lambd, keep_prob)
 
         #update parameters
         user_params = nn.update_parameters(user_params, user_grads, learning_rate)
@@ -72,10 +72,16 @@ if __name__ == "__main__":
     #Load the data
     X_user, X_house, Y = load_and_prepare_data()
 
-    #train the model
-    trained_user_model, trained_house_model = train(X_user, X_house, Y, 0.1, 2000, 0.1)
+    #initilize some hyperparameters
+    LEARNING_RATE = 0.075
+    EPOCHS = 10000
+    LAMBDA = 0.1
+    KEEP_PROB = 0.8
 
-    #To save the trained parameters to disk for later use in inference or further training without needing to retrain from scratch.
+    #train the model
+    trained_user_model, trained_house_model = train(X_user, X_house, Y, LEARNING_RATE, EPOCHS, LAMBDA, KEEP_PROB)
+
+    # To save the trained parameters to disk for later use in inference or further training without needing to retrain from scratch.
     print("💾 Saving trained parameters to disk...")
     with open('regularised_trained_user_params.pkl', 'wb') as f:
         pickle.dump(trained_user_model, f)

@@ -104,7 +104,7 @@ def forward(A, w, b):
 
     return Z, cache
 
-def activation_forward(A_prev, w, b, act):
+def activation_forward(A_prev, w, b, act, keep_prob):
     """
     apply activation after every forward step
     """
@@ -117,11 +117,22 @@ def activation_forward(A_prev, w, b, act):
         Z, linear_cache = forward(A_prev, w, b)
         A, activation_cache = activation[act](Z)
 
-    cache = (linear_cache, activation_cache)
+    D = np.random.rand(A.shape[0], A.shape[1])
+
+    #convert D to 0's and 1's
+    D = (D < keep_prob).astype(int)
+
+    #delete some neurons based on the keep_prob
+    A = A * D
+
+    #scale the remaining neurons
+    A = A / keep_prob
+
+    cache = (linear_cache, activation_cache, D) # required for backpropogation
     return A, cache
 
 
-def repeat_activation_forward(X, params):
+def repeat_activation_forward(X, params, keep_prob):
     caches = []
     L = len(params) // 2  # Total number of layers (6)
     A = X
@@ -129,7 +140,7 @@ def repeat_activation_forward(X, params):
     # 1. Hidden Layers 1 through L-1: Safe ReLU tracking
     for l in range(1, L):
         A_prev = A
-        A, cache = activation_forward(A_prev, params['w' + str(l)], params['b' + str(l)], 'relu')
+        A, cache = activation_forward(A_prev, params['w' + str(l)], params['b' + str(l)], 'relu', keep_prob)
         caches.append(cache)
 
     #Final Output Embedding Layer L: Direct linear project (No ReLU)
@@ -180,18 +191,22 @@ def backward(dZ, cache, lambd): # cache: (A, w, b) from the forward function
 
     return dA_prev, dw, db
     
-def activation_backward(dA, cache, activation, lambd):
-    linear_cache, activation_cache = cache
+def activation_backward(dA, cache, activation, lambd, keep_prob):
+    linear_cache, activation_cache, D = cache
+
     if activation == 'relu':
         dZ = relu_backward(dA, activation_cache)
-        dA_prev, dw, db = backward(dZ, linear_cache, lambd)
     else:
         dZ = sigmoid_backward(dA, activation_cache)
-        dA_prev, dw, db = backward(dZ, linear_cache, lambd)
 
+    dZ = dZ * D
+    dZ = dZ / keep_prob
+
+    dA_prev, dw, db = backward(dZ, linear_cache, lambd)
+    
     return dA_prev, dw, db
 
-def repeat_activation_backward(dAL, caches, lambd):
+def repeat_activation_backward(dAL, caches, lambd, keep_prob):
     grads = {}
     L = len(caches)
     dA_current = dAL
@@ -216,7 +231,7 @@ def repeat_activation_backward(dAL, caches, lambd):
         current_cache = caches[l]
 
         # Pull the tracking metrics cleanly
-        dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu', lambd)
+        dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu', lambd, keep_prob)
 
         grads["dA" + str(l)] = dA_prev_temp
         grads["dw" + str(l + 1)] = dw_temp

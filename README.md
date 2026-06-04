@@ -30,6 +30,14 @@ Neural_Collaborative_Recommender_System/
 
 ---
 
+### 🚀 Optimization & Regularization (Phase 1)
+Initially, the unregularized Two-Tower network overfitted the 10k dataset, yielding a wide generalization gap (96.16% Train vs. 88.72% Test). 
+
+To resolve this, I implemented custom $L_2$ Regularization and Inverted Dropout from scratch:
+* **The Math Bottleneck:** Discovered an implementation hurdle where applying the dropout mask to the post-activation gradient ($dA$) misaligned with the activation caches. Corrected the backpropagation chain rule to apply the mask to the pre-activation gradient ($dZ$), eliminating gradient explosion/vanishing issues.
+* **Plateau Traversal:** Encountered a distinct optimization plateau at `88.02%` accuracy. Solved this by executing a multi-stage training strategy, utilizing a higher fixed learning rate (`0.075`) to traverse saddle points before dropping to a fine-tuning rate (`0.005`) to let the weights settle into the global minimum.
+* **Final Phase 1 Metrics:** Hitting **92.03% Training Accuracy** and **88.58% Test Accuracy**successfully shrinking the generalization gap to a highly stable **3.45%**.
+
 ## Results
 
 | Metric | Value |

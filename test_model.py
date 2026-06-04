@@ -24,8 +24,8 @@ def run_blind_validation_test():
         house_params = pickle.load(f)
 
 
-    A1_test, _ = nn.repeat_activation_forward(X_user_test, user_params)
-    A2_test, _ = nn.repeat_activation_forward(X_house_test, house_params)
+    A1_test, _ = nn.repeat_activation_forward(X_user_test, user_params, keep_prob = 1.0)
+    A2_test, _ = nn.repeat_activation_forward(X_house_test, house_params, keep_prob = 1.0)
 
 
     Z_test = np.dot(A1_test.T, A2_test)
