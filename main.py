@@ -21,7 +21,7 @@ def load_and_prepare_data():
 # X_user, X_house, Y = load_and_prepare_data()
 
 
-def train(X_user, X_house, Y, learning_rate, epochs):
+def train(X_user, X_house, Y, learning_rate, epochs, lambd):
     # assign the structure of the neural network 6 layers of relu and 1 layer of sigmoid at the end.
     user_layer_dims = [X_user.shape[0], 128, 64, 64, 32, 32, 32]
     house_layer_dims = [X_house.shape[0], 128, 64, 64, 32, 32, 32]
@@ -41,7 +41,7 @@ def train(X_user, X_house, Y, learning_rate, epochs):
         AL, _ = nn.sigmoid(Z)
 
         #Evaluate the cost
-        cost = nn.compute_cost(AL, Y)
+        cost = nn.compute_cost(AL, Y, params = {**user_params, **house_params}, lambd = lambd)
 
         #Backward Pass
         #directly used the result derived.
@@ -52,8 +52,8 @@ def train(X_user, X_house, Y, learning_rate, epochs):
         dA2 = dZ * A1
 
         # use the repeat_activation_backward function written in model.py
-        user_grads = nn.repeat_activation_backward(dA1, caches1)
-        house_grads = nn.repeat_activation_backward(dA2, caches2)
+        user_grads = nn.repeat_activation_backward(dA1, caches1, lambd)
+        house_grads = nn.repeat_activation_backward(dA2, caches2, lambd)
 
         #update parameters
         user_params = nn.update_parameters(user_params, user_grads, learning_rate)
@@ -73,12 +73,12 @@ if __name__ == "__main__":
     X_user, X_house, Y = load_and_prepare_data()
 
     #train the model
-    trained_user_model, trained_house_model = train(X_user, X_house, Y, 0.1, 20000)
+    trained_user_model, trained_house_model = train(X_user, X_house, Y, 0.1, 2000, 0.1)
 
     #To save the trained parameters to disk for later use in inference or further training without needing to retrain from scratch.
     print("💾 Saving trained parameters to disk...")
-    with open('trained_user_params.pkl', 'wb') as f:
+    with open('regularised_trained_user_params.pkl', 'wb') as f:
         pickle.dump(trained_user_model, f)
-    with open('trained_house_params.pkl', 'wb') as f:
+    with open('regularised_trained_house_params.pkl', 'wb') as f:
         pickle.dump(trained_house_model, f)
     print("✅ Parameters saved successfully!")

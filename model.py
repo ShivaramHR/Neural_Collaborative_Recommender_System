@@ -85,7 +85,7 @@ def initialize_parameters(layer_dims):
     L = len(layer_dims)
 
     for l in range(1, L): # start from 1 cause we have number of features in the 0th pos.
-        params['w' + str(l)] = np.random.randn(layer_dims[l], layer_dims[l-1])*0.1 #(k1, nx) for 1st iteration
+        params['w' + str(l)] = np.random.randn(layer_dims[l], layer_dims[l-1])*np.sqrt(2.0 / layer_dims[l-1]) #(k1, nx) for 1st iteration
         params['b' + str(l)] = np.zeros((layer_dims[l], 1)) # (k1 , 1) for 1st iteration
 
         # to be safe and not mismatch the shapes
@@ -132,12 +132,10 @@ def repeat_activation_forward(X, params):
         A, cache = activation_forward(A_prev, params['w' + str(l)], params['b' + str(l)], 'relu')
         caches.append(cache)
 
-    # 2. Final Output Embedding Layer L: Direct linear project (No ReLU)
+    #Final Output Embedding Layer L: Direct linear project (No ReLU)
     A_prev = A
     Z, linear_cache = forward(A_prev, params['w' + str(L)], params['b' + str(L)])
 
-    # CRITICAL FIX: Save a dummy string for the activation cache
-    # to prevent relu_backward from accidentally reading Z later!
     cache = (linear_cache, "LINEAR_LAYER_NO_RELU")
     A = Z
     caches.append(cache)
@@ -145,32 +143,36 @@ def repeat_activation_forward(X, params):
     return A, caches
         
         
-def compute_cost(AL, Y):
+def compute_cost(AL, Y, params, lambd):
     """
     Y => (ny, m)
     AL => (ny, m)
     """
     m = Y.shape[1]
 
-    # 🚨 CRITICAL FIX: Clip AL values to be between epsilon and 1 - epsilon
-    # This keeps AL away from absolute 0 and 1, stopping np.log(0) from hitting infinity
     epsilon = 1e-15
     AL = np.clip(AL, epsilon, 1 - epsilon)
 
     # Standard Cross-Entropy Cost Formula
     cost = -(1/m) * (np.sum(Y * np.log(AL) + (1 - Y) * np.log(1 - AL)))
 
+    L = len(params) // 2
+    reg_cost = 0
+    for l in range(1, L+1):
+        reg_cost += np.sum(np.square(params['w' + str(l)]))
+    cost += (lambd / (2 * m)) * reg_cost
+
     # Ensure the cost output is a scalar dimension
     cost = np.squeeze(cost)
 
     return cost
 
-def backward(dZ, cache): # cache: (A, w, b) from the forward function
+def backward(dZ, cache, lambd): # cache: (A, w, b) from the forward function
     A_prev, w, b = cache
 
     m = A_prev.shape[1]
 
-    dw = (1/m)*(np.dot(dZ, A_prev.T))
+    dw = (1/m)*(np.dot(dZ, A_prev.T)) + (lambd/m)*w
 
     db = (1/m)*(np.sum(dZ, axis = 1, keepdims = True))
 
@@ -178,18 +180,18 @@ def backward(dZ, cache): # cache: (A, w, b) from the forward function
 
     return dA_prev, dw, db
     
-def activation_backward(dA, cache, activation):
+def activation_backward(dA, cache, activation, lambd):
     linear_cache, activation_cache = cache
     if activation == 'relu':
         dZ = relu_backward(dA, activation_cache)
-        dA_prev, dw, db = backward(dZ, linear_cache)
+        dA_prev, dw, db = backward(dZ, linear_cache, lambd)
     else:
         dZ = sigmoid_backward(dA, activation_cache)
-        dA_prev, dw, db = backward(dZ, linear_cache)
+        dA_prev, dw, db = backward(dZ, linear_cache, lambd)
 
     return dA_prev, dw, db
 
-def repeat_activation_backward(dAL, caches):
+def repeat_activation_backward(dAL, caches, lambd):
     grads = {}
     L = len(caches)
     dA_current = dAL
@@ -200,7 +202,7 @@ def repeat_activation_backward(dAL, caches):
 
     # Directly pass back through the linear layer equations
     dZ = dA_current
-    dA_prev_temp, dw_temp, db_temp = backward(dZ, linear_cache)
+    dA_prev_temp, dw_temp, db_temp = backward(dZ, linear_cache, lambd)
 
     grads["dA" + str(L - 1)] = dA_prev_temp
     grads["dw" + str(L)] = dw_temp
@@ -214,7 +216,7 @@ def repeat_activation_backward(dAL, caches):
         current_cache = caches[l]
 
         # Pull the tracking metrics cleanly
-        dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu')
+        dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu', lambd)
 
         grads["dA" + str(l)] = dA_prev_temp
         grads["dw" + str(l + 1)] = dw_temp
@@ -224,15 +226,6 @@ def repeat_activation_backward(dAL, caches):
 
     return grads
 
-
-    for l in reversed(range(L-1)):
-        current_cache = caches[l]
-        dA_prev_temp, dw_temp, db_temp = activation_backward(dA_current, current_cache, 'relu')
-        grads["dA" + str(l)] = dA_prev_temp
-        grads["dw" + str(l+1)] = dw_temp
-        grads["db" + str(l+1)] = db_temp
-
-    return grads
 
 def update_parameters(params, grads, learning_rate):
     parameters = copy.deepcopy(params)

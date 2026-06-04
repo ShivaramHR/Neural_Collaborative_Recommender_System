@@ -18,9 +18,9 @@ def run_blind_validation_test():
 
 
     print("📂 Loading trained model parameters...")
-    with open('trained_user_params.pkl', 'rb') as f:
+    with open('regularised_trained_user_params.pkl', 'rb') as f:
         user_params = pickle.load(f)
-    with open('trained_house_params.pkl', 'rb') as f:
+    with open('regularised_trained_house_params.pkl', 'rb') as f:
         house_params = pickle.load(f)
 
 
@@ -40,7 +40,7 @@ def run_blind_validation_test():
 
 
     test_accuracy = np.mean(test_predictions == Y_test_true) * 100
-    test_cost = nn.compute_cost(AL_test_flattened, Y_test_true)
+    test_cost = nn.compute_cost(AL_test_flattened, Y_test_true, params={**user_params, **house_params}, lambd=0.1)
 
     print("\n================ TEST RESULTS ================")
     print(f"📉 Fresh Test Set Cost:     {test_cost:.6f}")
