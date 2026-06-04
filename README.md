@@ -25,7 +25,7 @@ Neural_Collaborative_Recommender_System/
 
 - **[View Data Generation Notebook (Alternative Link)](https://nbviewer.org/github/ShivaramHR/Neural_Collaborative_Recommender_System/blob/main/generate.ipynb)** - Step-by-step synthetic user and house feature matrix creation pipeline.
 * **`main.py`** - Core training script utilizing the optimized model configuration.
-  > **Metrics:** `Training Accuracy: 95.48%` | `Blind Test Accuracy: 88.88%`
+  > **Metrics:** `Training Accuracy: 95.58%` | `Blind Test Accuracy: 90.74%`
 - `model.py` - Custom Multi-Layer Neural Collaborative Filtering Two-Tower architecture built from scratch.
 
 ---
